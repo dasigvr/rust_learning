@@ -6,8 +6,8 @@ fn main() {
     println!("Guess the number!");
 
     let secret_number = rand::thread_rng().gen_range(1..101);
-    let mut attempts = 0;
-    
+    let attempts = 0;
+
     loop {
         println!("Please input your guess.");
 
@@ -25,7 +25,10 @@ fn main() {
             Err(_) => continue,
         };
 
-        attempts += 1;
+        // use shadowing instead of mutable 'attempts'
+        // this is nice because after this increment
+        // the variable is again immutable
+        let attempts = attempts + 1;
 
         println!("You guessed: {}", guess);
 
